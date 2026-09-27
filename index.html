@@ -187,10 +187,11 @@
   .trainer-skills{display:flex; flex-wrap:wrap; gap:10px; margin-bottom:24px;}
   .skill-tag{font-size:12.5px; letter-spacing:0.02em; background:var(--coral-soft); color:var(--coral-deep); padding:7px 15px; border-radius:20px; font-weight:700;}
   .trainer-motto{
-    font-size:15px; line-height:1.85; color:var(--ink);
     border-left:3px solid var(--coral); padding-left:18px; margin-bottom:22px;
   }
-  .trainer-motto .motto-label{display:block; font-family:var(--font-en); font-size:11.5px; letter-spacing:0.16em; color:var(--coral-deep); margin-bottom:8px;}
+  .trainer-motto .motto-label{display:block; font-family:var(--font-en); font-size:11.5px; letter-spacing:0.16em; color:var(--coral-deep); margin-bottom:10px;}
+  .motto-main{font-size:19px; font-weight:700; color:var(--ink); line-height:1.7; margin-bottom:12px;}
+  .motto-sub{font-size:14px; color:var(--ink-soft); line-height:1.8; margin-top:4px;}
   .trainer-note{font-size:13.5px; color:var(--ink-soft);}
   @media (max-width:860px){
     .trainer-wrap{grid-template-columns:1fr;}
@@ -422,7 +423,9 @@
           </div>
           <div class="trainer-motto">
             <span class="motto-label">MOTTO</span>
-            人は、願う強さの分だけ、変わることができる。けれど、一人では続けられないほどの弱さも持っている——だからこそ、隣を伴走する人が要る。
+            <p class="motto-main reveal" style="--rd:0s;">人は、願う強さの分だけ、変わることができる。</p>
+            <p class="motto-sub reveal" style="--rd:.5s;">けれど、一人では続けられないほどの弱さも持っている</p>
+            <p class="motto-sub reveal" style="--rd:1s;">——だからこそ、隣を伴走する人が要る。</p>
           </div>
           <p class="trainer-note">クライアントのコンディションを最優先に、丁寧に指導するスタイルが信条。</p>
         </div>
