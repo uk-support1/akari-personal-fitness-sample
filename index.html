@@ -198,8 +198,8 @@
     transition:opacity .5s ease, transform .5s ease;
   }
   .motto-sub.letter-reveal.is-in .char{opacity:1; transform:translateY(0);}
-  .motto-sub.slow-rise{filter:blur(4px); transition:opacity 1.7s ease var(--rd,0s), transform 1.7s ease var(--rd,0s), filter 1.7s ease var(--rd,0s);}
-  .motto-sub.slow-rise.is-in{filter:blur(0);}
+  .motto-sub.slow-rise{filter:blur(4px); transform:none; transition:opacity 1.7s ease var(--rd,0s), filter 1.7s ease var(--rd,0s);}
+  .motto-sub.slow-rise.is-in{filter:blur(0); transform:none;}
   .trainer-note{font-size:13.5px; color:var(--ink-soft);}
   @media (max-width:860px){
     .trainer-wrap{grid-template-columns:1fr;}
@@ -574,11 +574,11 @@
       cio.unobserve(entry.target);
       var el = entry.target;
       var to = parseInt(el.getAttribute('data-to'), 10);
-      var dur = 1400, start = null;
+      var dur = 1900, start = null;
       function step(ts){
         if (!start) start = ts;
         var p = Math.min(1, (ts - start) / dur);
-        var eased = 1 - Math.pow(1 - p, 3);
+        var eased = 1 - Math.pow(1 - p, 5);
         el.textContent = Math.round(eased * to);
         if (p < 1) requestAnimationFrame(step);
       }
