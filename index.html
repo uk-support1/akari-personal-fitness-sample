@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>灯 -AKARI- | PERSONAL BODY MAKE STUDIO</title>
+<meta name="description" content="会員の9割が女性。完全個室のパーソナルボディメイクスタジオ「灯 -AKARI-」。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fffaf6;
+    --bg-2:#fff2ec;
+    --bg-3:#ffe4da;
+    --ink:#332a25;
+    --ink-soft:#8f8079;
+    --line:rgba(51,42,37,0.12);
+    --coral:#ff7d64;
+    --coral-deep:#e85a3f;
+    --coral-soft:rgba(255,125,100,0.14);
+    --cream:#fffaf6;
+    --font-en:'Marcellus', serif;
+    --font-jp:'Zen Maru Gothic', sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--font-jp);
+    line-height:1.9;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{display:block;max-width:100%;}
+  a{color:inherit;text-decoration:none;}
+  .container{width:100%;max-width:1160px;margin:0 auto;padding:0 32px;}
+  .eyebrow{
+    font-family:var(--font-en);
+    font-size:14px;
+    letter-spacing:0.28em;
+    color:var(--coral-deep);
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-bottom:22px;
+  }
+  .eyebrow::before{content:"";width:32px;height:1px;background:var(--coral-deep);}
+  .accent{color:var(--coral-deep);}
+
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.16,.8,.24,1), transform .9s cubic-bezier(.16,.8,.24,1);transition-delay:var(--rd,0s);}
+  .reveal.is-in{opacity:1;transform:translateY(0);}
+
+  .site-header{
+    position:fixed; top:0; left:0; width:100%; z-index:100;
+    padding:24px 0;
+    background:transparent;
+    transition:background .4s ease, padding .4s ease, box-shadow .4s ease;
+  }
+  .site-header.scrolled{
+    background:rgba(255,250,246,0.88);
+    backdrop-filter:blur(10px);
+    padding:14px 0;
+    box-shadow:0 1px 0 var(--line);
+  }
+  .site-header .container{display:flex; align-items:center; justify-content:space-between;}
+  .logo{font-family:var(--font-en); font-size:23px; letter-spacing:0.04em; color:var(--ink);}
+  .logo span{color:var(--coral-deep);}
+  .nav-links{display:flex; align-items:center; gap:34px;}
+  .nav-links a{
+    font-family:var(--font-en); font-size:14px; letter-spacing:0.08em;
+    color:var(--ink-soft); transition:color .3s ease;
+  }
+  .nav-links a:hover{color:var(--ink);}
+  .nav-cta{
+    font-family:var(--font-jp); font-weight:700; font-size:13.5px;
+    color:#fff !important; background:var(--coral);
+    padding:11px 24px; border-radius:30px;
+    transition:background .3s ease, transform .3s ease;
+  }
+  .nav-cta:hover{background:var(--coral-deep); transform:translateY(-1px);}
+  @media (max-width:860px){ .nav-links a:not(.nav-cta){display:none;} }
+  @media (max-width:480px){ .logo{font-size:19px;} .nav-cta{font-size:12px; padding:9px 16px;} }
+
+  /* hero */
+  .hero{
+    position:relative; height:100svh; min-height:620px;
+    display:flex; align-items:flex-end;
+    overflow:hidden; background:var(--bg-3);
+  }
+  .hero-media{position:absolute; inset:0; z-index:0; overflow:hidden;}
+  .hero-media img{
+    width:100%; height:100%; object-fit:cover; object-position:center 15%;
+    animation:heroZoom 24s ease-out forwards;
+  }
+  @keyframes heroZoom{0%{transform:scale(1.08);} 100%{transform:scale(1);}}
+  .hero-media::after{
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(51,30,22,0.12) 0%, rgba(51,30,22,0.1) 30%, rgba(51,25,18,0.45) 62%, rgba(38,20,14,0.86) 100%);
+  }
+  .hero-inner{position:relative; z-index:2; width:100%; padding-bottom:86px;}
+  .hero-eyebrow{
+    font-family:var(--font-en); font-size:15px; letter-spacing:0.4em;
+    color:#fff; margin-bottom:22px; text-shadow:0 2px 12px rgba(0,0,0,0.25);
+  }
+  .hero-title{
+    font-family:var(--font-jp); font-weight:900; color:#fff;
+    font-size:clamp(34px, 5.6vw, 72px);
+    line-height:1.35; letter-spacing:0.01em;
+    margin-bottom:26px;
+    text-shadow:0 4px 24px rgba(0,0,0,0.4), 0 2px 8px rgba(0,0,0,0.5);
+  }
+  .hero-sub{
+    font-size:clamp(14px, 1.5vw, 15.5px); color:#fff;
+    max-width:520px; line-height:2; text-shadow:0 2px 10px rgba(0,0,0,0.55), 0 1px 3px rgba(0,0,0,0.6);
+  }
+  .hero-scroll{
+    position:absolute; right:38px; bottom:38px; z-index:2;
+    display:flex; flex-direction:column; align-items:center; gap:12px;
+    font-family:var(--font-en); font-size:12px; letter-spacing:0.24em;
+    color:#fff;
+  }
+  .hero-scroll .line{width:1px; height:52px; background:linear-gradient(#fff, transparent); animation:scrollLine 2.2s ease-in-out infinite;}
+  @keyframes scrollLine{0%{transform:scaleY(0); transform-origin:top;} 50%{transform:scaleY(1); transform-origin:top;} 50.01%{transform-origin:bottom;} 100%{transform:scaleY(0); transform-origin:bottom;}}
+
+  section{position:relative; padding:130px 0;}
+  .sec-divider{border-top:1px solid var(--line);}
+
+  /* philosophy */
+  .phil-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:70px; align-items:center;}
+  .phil-heading{font-size:clamp(27px, 3.4vw, 42px); font-weight:900; line-height:1.6;}
+  .phil-body{color:var(--ink-soft); font-size:15.5px; padding-top:6px;}
+  .phil-photo{position:relative; border-radius:20px; overflow:hidden; box-shadow:0 30px 60px -20px rgba(51,42,37,0.25);}
+  .phil-photo img{width:100%; height:100%; object-fit:cover; aspect-ratio:5/4;}
+  .stat-row{display:grid; grid-template-columns:repeat(3,1fr); gap:30px; margin-top:70px; border-top:1px solid var(--line); padding-top:44px;}
+  .stat-num{
+    font-family:var(--font-en); font-size:clamp(38px,4.6vw,58px); color:var(--coral-deep); line-height:1;
+    display:flex; align-items:baseline; gap:4px;
+  }
+  .stat-num .unit{font-size:0.4em; color:var(--ink); font-family:var(--font-jp); font-weight:700;}
+  .stat-label{margin-top:14px; font-size:13px; color:var(--ink-soft); letter-spacing:0.02em;}
+
+  .sec-head{display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:60px; gap:20px; flex-wrap:wrap;}
+  .sec-heading{font-size:clamp(25px,3.2vw,38px); font-weight:900; line-height:1.5;}
+
+  /* program cards */
+  .program-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:26px;}
+  .program-card{
+    position:relative; border-radius:18px; background:#fff;
+    overflow:hidden; box-shadow:0 20px 40px -24px rgba(51,42,37,0.2);
+    transition:transform .4s ease, box-shadow .4s ease;
+  }
+  .program-card:hover{transform:translateY(-6px); box-shadow:0 30px 50px -20px rgba(51,42,37,0.28);}
+  .program-photo{height:340px; overflow:hidden; position:relative;}
+  .program-photo img{width:100%; height:100%; object-fit:cover; object-position:center 15%; transition:transform .8s cubic-bezier(.16,.8,.24,1);}
+  .program-card:hover .program-photo img{transform:scale(1.06);}
+  .program-num{
+    position:absolute; top:18px; left:20px; z-index:2;
+    font-family:var(--font-en); font-size:13px; letter-spacing:0.1em; color:#fff;
+    background:rgba(51,42,37,0.35); backdrop-filter:blur(4px);
+    padding:4px 12px; border-radius:20px;
+  }
+  .program-body{padding:28px 26px 32px;}
+  .program-tag{font-family:var(--font-en); font-size:13.5px; letter-spacing:0.08em; color:var(--coral-deep); margin-bottom:10px;}
+  .program-title{font-size:19px; font-weight:900; margin-bottom:14px;}
+  .program-desc{font-size:14px; color:var(--ink-soft); line-height:1.85;}
+
+  /* method */
+  .method-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:26px;}
+  .method-card{background:#fff; border-radius:18px; padding:44px 32px; box-shadow:0 20px 40px -28px rgba(51,42,37,0.18);}
+  .method-index{font-family:var(--font-en); font-size:14px; color:var(--coral-deep); letter-spacing:0.1em; margin-bottom:22px;}
+  .method-title{font-size:18.5px; font-weight:900; margin-bottom:16px;}
+  .method-desc{font-size:14px; color:var(--ink-soft); line-height:1.85;}
+
+  /* trainer */
+  .trainer-wrap{display:grid; grid-template-columns:1fr 1fr; gap:0; border-radius:24px; overflow:hidden; box-shadow:0 30px 70px -30px rgba(51,42,37,0.28);}
+  .trainer-photo{position:relative; min-height:480px;}
+  .trainer-photo img{width:100%; height:100%; object-fit:cover; object-position:center 20%; position:absolute; inset:0;}
+  .trainer-content{background:#fff; padding:60px 54px; display:flex; flex-direction:column; justify-content:center;}
+  .trainer-role{font-family:var(--font-en); font-size:14px; letter-spacing:0.16em; color:var(--coral-deep); margin-bottom:16px;}
+  .trainer-name{font-size:24px; font-weight:900; margin-bottom:24px;}
+  .trainer-bio{color:var(--ink-soft); font-size:15px; line-height:1.9; margin-bottom:32px;}
+  .trainer-stats{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:24px 0; margin-bottom:26px;}
+  .trainer-stats .stat-num{font-size:26px;}
+  .trainer-stats .stat-label{margin-top:8px; font-size:12px;}
+  .trainer-skills{display:flex; flex-wrap:wrap; gap:10px; margin-bottom:24px;}
+  .skill-tag{font-size:12.5px; letter-spacing:0.02em; background:var(--coral-soft); color:var(--coral-deep); padding:7px 15px; border-radius:20px; font-weight:700;}
+  .trainer-note{font-size:13.5px; color:var(--ink-soft);}
+  @media (max-width:860px){
+    .trainer-wrap{grid-template-columns:1fr;}
+    .trainer-photo{min-height:340px;}
+    .trainer-content{padding:44px 30px;}
+  }
+
+  /* voice */
+  .voice-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:26px;}
+  .voice-card{border-radius:18px; padding:36px 30px; background:#fff; box-shadow:0 20px 40px -28px rgba(51,42,37,0.18);}
+  .voice-mark{font-family:var(--font-en); font-size:52px; color:var(--coral-soft); line-height:1; margin-bottom:8px;}
+  .voice-text{font-size:15px; line-height:1.9; margin-bottom:26px;}
+  .voice-meta{font-size:12.5px; color:var(--ink-soft); border-top:1px solid var(--line); padding-top:16px;}
+
+  /* plan */
+  .plan-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:26px;}
+  .plan-card{border-radius:18px; background:#fff; padding:40px 32px; display:flex; flex-direction:column; box-shadow:0 20px 40px -28px rgba(51,42,37,0.18); transition:transform .4s ease;}
+  .plan-card.is-featured{background:linear-gradient(165deg, #fff 0%, var(--bg-2) 100%); border:2px solid var(--coral); position:relative; transform:translateY(-14px);}
+  .plan-badge{position:absolute; top:-13px; left:32px; background:var(--coral); color:#fff; font-family:var(--font-en); font-size:12px; letter-spacing:0.08em; padding:5px 16px; border-radius:20px;}
+  .plan-name{font-family:var(--font-en); font-size:19px; letter-spacing:0.06em; color:var(--ink-soft); margin-bottom:6px;}
+  .plan-jp{font-size:15px; font-weight:700; margin-bottom:26px;}
+  .plan-price{font-family:var(--font-en); font-size:36px; margin-bottom:6px; color:var(--coral-deep);}
+  .plan-price .yen{font-size:0.5em; margin-right:4px; color:var(--ink-soft);}
+  .plan-unit{font-size:12.5px; color:var(--ink-soft); margin-bottom:28px;}
+  .plan-desc{font-size:13.5px; color:var(--ink-soft); line-height:1.85; flex-grow:1;}
+  @media (max-width:860px){ .plan-card.is-featured{transform:none;} }
+
+  /* final cta */
+  .final{position:relative; min-height:620px; display:flex; align-items:center; overflow:hidden;}
+  .final-bg{position:absolute; inset:0; z-index:0;}
+  .final-bg img{width:100%; height:100%; object-fit:cover;}
+  .final-bg::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(255,250,246,0.35) 0%, rgba(255,228,218,0.55) 50%, var(--bg) 100%);}
+  .final-inner{position:relative; z-index:2; width:100%; text-align:center;}
+  .final-eyebrow{justify-content:center;}
+  .final-title{font-size:clamp(30px,4.6vw,54px); font-weight:900; line-height:1.5; margin-bottom:24px;}
+  .final-sub{color:var(--ink-soft); font-size:15px; max-width:480px; margin:0 auto 44px;}
+  .final-contact{
+    display:inline-flex; flex-direction:column; align-items:center; gap:18px;
+    border-radius:22px; padding:38px 60px; background:rgba(255,255,255,0.85); backdrop-filter:blur(8px);
+    box-shadow:0 30px 60px -24px rgba(51,42,37,0.25);
+  }
+  .final-contact .label{font-family:var(--font-en); font-size:12px; letter-spacing:0.16em; color:var(--coral-deep);}
+  .final-contact .num{font-family:var(--font-en); font-size:clamp(28px,3.4vw,38px); color:var(--ink);}
+  .final-contact .hours{font-size:12.5px; color:var(--ink-soft);}
+  .final-btn{
+    margin-top:8px; display:inline-block; background:var(--coral); color:#fff;
+    font-weight:700; font-size:14px; border-radius:30px;
+    padding:16px 40px; transition:background .3s ease, transform .3s ease;
+  }
+  .final-btn:hover{background:var(--coral-deep); transform:translateY(-2px);}
+
+  footer{padding:60px 0 40px; border-top:1px solid var(--line);}
+  .footer-grid{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px;}
+  .footer-logo{font-family:var(--font-en); font-size:20px;}
+  .footer-logo span{color:var(--coral-deep);}
+  .footer-links{display:flex; gap:28px;}
+  .footer-links a{font-size:13px; color:var(--ink-soft);}
+  .footer-copy{font-size:12px; color:var(--ink-soft); opacity:0.7; margin-top:26px; text-align:center;}
+
+  @media (max-width:860px){
+    .phil-grid{grid-template-columns:1fr; gap:36px;}
+    .stat-row{grid-template-columns:1fr; gap:26px;}
+    .program-grid, .method-grid, .voice-grid, .plan-grid{grid-template-columns:1fr;}
+    section{padding:90px 0;}
+  }
+</style>
+</head>
+<body>
+
+  <header class="site-header" id="siteHeader">
+    <div class="container">
+      <a href="#" class="logo">灯 <span>-AKARI-</span></a>
+      <nav class="nav-links">
+        <a href="#program">PROGRAM</a>
+        <a href="#method">METHOD</a>
+        <a href="#trainer">TRAINER</a>
+        <a href="#voice">VOICE</a>
+        <a href="#plan">PLAN</a>
+        <a href="#contact" class="nav-cta">無料カウンセリング</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-media">
+      <img src="assets/hero.jpg" alt="ダンベルショルダープレスをする女性">
+    </div>
+    <div class="hero-inner container">
+      <div class="hero-eyebrow">PERSONAL BODY MAKE STUDIO</div>
+      <h1 class="hero-title">もっと、<br>自分を好きになる。</h1>
+      <p class="hero-sub">本気で変わりたい女性のための、完全個室のパーソナルボディメイクスタジオ「灯 -AKARI-」。会員の9割が、トレーニング未経験からのスタートです。</p>
+    </div>
+    <div class="hero-scroll"><span>SCROLL</span><span class="line"></span></div>
+  </section>
+
+  <section class="sec-philosophy">
+    <div class="container">
+      <div class="phil-grid">
+        <div class="reveal" style="--rd:.05s;">
+          <div class="eyebrow">00 / Philosophy</div>
+          <h2 class="phil-heading">変わるのは、<br>見た目<span class="accent">だけ</span>じゃない。</h2>
+          <p class="phil-body" style="margin-top:26px;">自己流のダイエットに疲れた。大きなジムは、人の目が気になって足が向かない。そんな女性たちのために、灯は完全個室・女性専用の空間を用意した。鍛えるほどに、姿勢が変わり、歩き方が変わり、鏡を見る時間が変わっていく——その変化を、私たちは"灯り"と呼んでいる。</p>
+        </div>
+        <div class="reveal phil-photo" style="--rd:.2s;">
+          <img src="assets/detail.jpg" alt="コーラルピンクのダンベルを持つ手元" loading="lazy">
+        </div>
+      </div>
+      <div class="stat-row">
+        <div class="reveal" style="--rd:.05s;">
+          <div class="stat-num"><span class="cnt" data-to="90">0</span><span class="unit">%</span></div>
+          <div class="stat-label">会員に占める女性の割合</div>
+        </div>
+        <div class="reveal" style="--rd:.15s;">
+          <div class="stat-num"><span class="cnt" data-to="60">0</span><span class="unit">分</span></div>
+          <div class="stat-label">1セッションの時間</div>
+        </div>
+        <div class="reveal" style="--rd:.25s;">
+          <div class="stat-num"><span class="cnt" data-to="3">0</span><span class="unit">ヶ月</span></div>
+          <div class="stat-label">標準プログラム期間</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec-divider" id="program">
+    <div class="container">
+      <div class="sec-head reveal">
+        <div>
+          <div class="eyebrow">01 / Program</div>
+          <h2 class="sec-heading">なりたい自分から逆算する、<br>3つのプログラム。</h2>
+        </div>
+      </div>
+      <div class="program-grid">
+        <div class="program-card reveal" style="--rd:.05s;">
+          <div class="program-photo"><span class="program-num">01</span><img src="assets/program-1.jpg" alt="ケトルベルを持ってスクワットする女性" loading="lazy"></div>
+          <div class="program-body">
+            <div class="program-tag">BODY MAKE</div>
+            <div class="program-title">気になる部分から、本気で。</div>
+            <p class="program-desc">自重・ケトルベルを使い、無理なく続けられる負荷で結果を出す。停滞しない体型より、変わり続ける体づくりを。</p>
+          </div>
+        </div>
+        <div class="program-card reveal" style="--rd:.15s;">
+          <div class="program-photo"><span class="program-num">02</span><img src="assets/program-2.jpg" alt="リフォーマーで姿勢改善する女性" loading="lazy"></div>
+          <div class="program-body">
+            <div class="program-tag">POSTURE & PILATES</div>
+            <div class="program-title">姿勢から、美しく。</div>
+            <p class="program-desc">リフォーマーを使い、呼吸から見直す姿勢改善。しなやかな筋肉と、美しい立ち姿を育てる。</p>
+          </div>
+        </div>
+        <div class="program-card reveal" style="--rd:.25s;">
+          <div class="program-photo"><span class="program-num">03</span><img src="assets/hero.jpg" alt="ダンベルを使った筋力トレーニング" loading="lazy"></div>
+          <div class="program-body">
+            <div class="program-tag">STRENGTH BASIC</div>
+            <div class="program-title">はじめての筋トレも、丁寧に。</div>
+            <p class="program-desc">ダンベルを使った基礎から。フォームを一つひとつ確認しながら、安心して負荷を上げていく。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec-divider" id="method">
+    <div class="container">
+      <div class="sec-head reveal">
+        <div>
+          <div class="eyebrow">02 / Method</div>
+          <h2 class="sec-heading">灯がこだわる、<br>3つの基本。</h2>
+        </div>
+      </div>
+      <div class="method-grid">
+        <div class="method-card reveal" style="--rd:.05s;">
+          <div class="method-index">01</div>
+          <div class="method-title">女性専用・完全個室</div>
+          <p class="method-desc">他の会員と顔を合わせることのない、プライベートな空間。人の目を気にせず、自分のペースで通える。</p>
+        </div>
+        <div class="method-card reveal" style="--rd:.15s;">
+          <div class="method-index">02</div>
+          <div class="method-title">骨格・姿勢評価に基づく設計</div>
+          <p class="method-desc">一人ひとりの骨格・姿勢・柔軟性を評価した上で、無理のないプログラムを組み立てる。</p>
+        </div>
+        <div class="method-card reveal" style="--rd:.25s;">
+          <div class="method-index">03</div>
+          <div class="method-title">体調の波に寄り添う食事サポート</div>
+          <p class="method-desc">ホルモンバランスや体調の波を考慮しながら、無理のない食事管理をLINEで毎日サポート。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec-divider" id="trainer">
+    <div class="container">
+      <div class="sec-head reveal">
+        <div>
+          <div class="eyebrow">03 / Trainer</div>
+          <h2 class="sec-heading">あなたの"なりたい"に、<br>寄り添う人。</h2>
+        </div>
+      </div>
+      <div class="trainer-wrap reveal" style="--rd:.1s;">
+        <div class="trainer-photo">
+          <img src="assets/trainer-coaching-1.jpg" alt="クライアントの姿勢を指導するトレーナー">
+        </div>
+        <div class="trainer-content">
+          <div class="trainer-role">HEAD TRAINER</div>
+          <div class="trainer-name">上原 健太</div>
+          <p class="trainer-bio">フィジカルトレーニング歴18年。がむしゃらに追い込むことだけがすべてではないと知っている。大切なのは、クライアント自身の今日のコンディション。呼吸や表情の変化まで見極めながら、初めての筋トレも安心に変える——それが、指導における一貫したスタイル。</p>
+          <div class="trainer-stats">
+            <div>
+              <div class="stat-num"><span class="cnt" data-to="18">0</span><span class="unit">年</span></div>
+              <div class="stat-label">トレーニング歴</div>
+            </div>
+            <div>
+              <div class="stat-num"><span class="cnt" data-to="62">0</span><span class="unit">kg</span></div>
+              <div class="stat-label">握力</div>
+            </div>
+            <div>
+              <div class="stat-num">6.00<span class="unit">秒</span></div>
+              <div class="stat-label">50m走</div>
+            </div>
+          </div>
+          <div class="trainer-skills">
+            <span class="skill-tag">チンニング</span>
+            <span class="skill-tag">腕立て伏せ</span>
+            <span class="skill-tag">アームカール</span>
+          </div>
+          <p class="trainer-note">クライアントのコンディションを最優先に、丁寧に指導するスタイルが信条。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec-divider" id="voice">
+    <div class="container">
+      <div class="sec-head reveal">
+        <div>
+          <div class="eyebrow">04 / Voice</div>
+          <h2 class="sec-heading">灯った、<br>その先の声。</h2>
+        </div>
+      </div>
+      <div class="voice-grid">
+        <div class="voice-card reveal" style="--rd:.05s;">
+          <div class="voice-mark">"</div>
+          <p class="voice-text">運動経験はゼロでしたが、今では筋トレの時間が楽しみになりました。個室だから、周りを気にせず頑張れます。</p>
+          <div class="voice-meta">会員 / 30代・会社員</div>
+        </div>
+        <div class="voice-card reveal" style="--rd:.15s;">
+          <div class="voice-mark">"</div>
+          <p class="voice-text">「姿勢が変わったね」と周りから言われるようになりました。数字より先に、見た目と気持ちが変わった気がします。</p>
+          <div class="voice-meta">会員 / 40代・自営業</div>
+        </div>
+        <div class="voice-card reveal" style="--rd:.25s;">
+          <div class="voice-mark">"</div>
+          <p class="voice-text">体調に波がある月でも、無理のないメニューに調整してもらえるので、途中で挫折せずに続けられています。</p>
+          <div class="voice-meta">会員 / 20代・会社員</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec-divider" id="plan">
+    <div class="container">
+      <div class="sec-head reveal">
+        <div>
+          <div class="eyebrow">05 / Plan</div>
+          <h2 class="sec-heading">続けやすさも、<br>設計のうち。</h2>
+        </div>
+      </div>
+      <div class="plan-grid">
+        <div class="plan-card reveal" style="--rd:.05s;">
+          <div class="plan-name">TRIAL</div>
+          <div class="plan-jp">体験セッション</div>
+          <div class="plan-price"><span class="yen">¥</span>6,000</div>
+          <div class="plan-unit">60分 / 1回</div>
+          <p class="plan-desc">まずは評価から。今の身体の状態と、なりたい自分までの距離を一緒に確認する60分。</p>
+        </div>
+        <div class="plan-card is-featured reveal" style="--rd:.15s;">
+          <div class="plan-badge">おすすめ</div>
+          <div class="plan-name">STANDARD</div>
+          <div class="plan-jp">月8回コース</div>
+          <div class="plan-price"><span class="yen">¥</span>92,000</div>
+          <div class="plan-unit">60分 / 月8回・週2回ペース</div>
+          <p class="plan-desc">最も選ばれているペース。3ヶ月続けることで、変化が定着しはじめる標準コース。</p>
+        </div>
+        <div class="plan-card reveal" style="--rd:.25s;">
+          <div class="plan-name">INTENSIVE</div>
+          <div class="plan-jp">月12回コース</div>
+          <div class="plan-price"><span class="yen">¥</span>128,000</div>
+          <div class="plan-unit">60分 / 月12回・週3回ペース</div>
+          <p class="plan-desc">期間を区切って、最速で変化に迫りたい人へ。結婚式・撮影前の仕上げにも。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final" id="contact">
+    <div class="final-bg"><img src="assets/studio.jpg" alt=""></div>
+    <div class="final-inner container">
+      <div class="reveal">
+        <div class="eyebrow final-eyebrow">Reservation</div>
+        <h2 class="final-title">灯る日は、<br>今日から始まる。</h2>
+        <p class="final-sub" style="margin-left:auto;margin-right:auto;">無料カウンセリングにて、目的と今の身体の状態を伺います。まずは、話すことから始めましょう。</p>
+      </div>
+      <div class="reveal final-contact" style="--rd:.15s;">
+        <span class="label">無料カウンセリング予約</span>
+        <a href="tel:0570-XXX-XXX" class="num">0570-XXX-XXX</a>
+        <span class="hours">受付 10:00 — 21:00　年中無休</span>
+        <a href="#" class="final-btn">WEBで予約する</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <a href="#" class="footer-logo">灯 <span>-AKARI-</span></a>
+        <div class="footer-links">
+          <a href="#program">Program</a>
+          <a href="#method">Method</a>
+          <a href="#trainer">Trainer</a>
+          <a href="#voice">Voice</a>
+          <a href="#plan">Plan</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+      <div class="footer-copy">&copy; AKARI PERSONAL BODY MAKE STUDIO — This is a portfolio sample page.</div>
+    </div>
+  </footer>
+
+<script>
+  var header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', function(){
+    if (window.scrollY > 40) header.classList.add('scrolled');
+    else header.classList.remove('scrolled');
+  }, { passive:true });
+
+  var revealEls = document.querySelectorAll('.reveal');
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting) { entry.target.classList.add('is-in'); io.unobserve(entry.target); }
+    });
+  }, { threshold:0.15, rootMargin:'0px 0px -60px 0px' });
+  revealEls.forEach(function(el){ io.observe(el); });
+
+  var counters = document.querySelectorAll('.cnt');
+  var cio = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (!entry.isIntersecting) return;
+      cio.unobserve(entry.target);
+      var el = entry.target;
+      var to = parseInt(el.getAttribute('data-to'), 10);
+      var dur = 1400, start = null;
+      function step(ts){
+        if (!start) start = ts;
+        var p = Math.min(1, (ts - start) / dur);
+        var eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(eased * to);
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    });
+  }, { threshold:0.4 });
+  counters.forEach(function(el){ cio.observe(el); });
+</script>
+</body>
+</html>
