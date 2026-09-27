@@ -192,6 +192,14 @@
   .trainer-motto .motto-label{display:block; font-family:var(--font-en); font-size:11.5px; letter-spacing:0.16em; color:var(--coral-deep); margin-bottom:10px;}
   .motto-main{font-size:19px; font-weight:700; color:var(--ink); line-height:1.7; margin-bottom:12px;}
   .motto-sub{font-size:14px; color:var(--ink-soft); line-height:1.8; margin-top:4px;}
+  .motto-sub.letter-reveal{opacity:1; transform:none; transition:none;}
+  .motto-sub.letter-reveal .char{
+    display:inline-block; opacity:0; transform:translateY(6px);
+    transition:opacity .5s ease, transform .5s ease;
+  }
+  .motto-sub.letter-reveal.is-in .char{opacity:1; transform:translateY(0);}
+  .motto-sub.slow-rise{filter:blur(4px); transition:opacity 1.7s ease var(--rd,0s), transform 1.7s ease var(--rd,0s), filter 1.7s ease var(--rd,0s);}
+  .motto-sub.slow-rise.is-in{filter:blur(0);}
   .trainer-note{font-size:13.5px; color:var(--ink-soft);}
   @media (max-width:860px){
     .trainer-wrap{grid-template-columns:1fr;}
@@ -365,7 +373,7 @@
       <div class="method-grid">
         <div class="method-card reveal" style="--rd:.05s;">
           <div class="method-index">01</div>
-          <div class="method-title">女性専用・完全個室</div>
+          <div class="method-title">完全個室</div>
           <p class="method-desc">他の会員と顔を合わせることのない、プライベートな空間。人の目を気にせず、自分のペースで通える。</p>
         </div>
         <div class="method-card reveal" style="--rd:.15s;">
@@ -424,8 +432,8 @@
           <div class="trainer-motto">
             <span class="motto-label">MOTTO</span>
             <p class="motto-main reveal" style="--rd:0s;">人は、願う強さの分だけ、変わることができる。</p>
-            <p class="motto-sub reveal" style="--rd:.5s;">けれど、一人では続けられないほどの弱さも持っている</p>
-            <p class="motto-sub reveal" style="--rd:1s;">——だからこそ、隣を伴走する人が要る。</p>
+            <p class="motto-sub letter-reveal reveal" style="--rd:0s;">けれど、一人では続けられないほどの弱さも持っている</p>
+            <p class="motto-sub slow-rise reveal" style="--rd:2.1s;">——だからこそ、隣を伴走する人が要る。</p>
           </div>
           <p class="trainer-note">クライアントのコンディションを最優先に、丁寧に指導するスタイルが信条。</p>
         </div>
@@ -531,6 +539,20 @@
   </footer>
 
 <script>
+  /* letter-by-letter reveal for the motto's second line */
+  document.querySelectorAll('.letter-reveal').forEach(function(el){
+    var text = el.textContent;
+    el.textContent = '';
+    var baseDelay = 450, step = 55;
+    Array.prototype.forEach.call(text, function(ch, i){
+      var span = document.createElement('span');
+      span.className = 'char';
+      span.style.transitionDelay = (baseDelay + i * step) + 'ms';
+      span.textContent = ch === ' ' ? ' ' : ch;
+      el.appendChild(span);
+    });
+  });
+
   var header = document.getElementById('siteHeader');
   window.addEventListener('scroll', function(){
     if (window.scrollY > 40) header.classList.add('scrolled');
