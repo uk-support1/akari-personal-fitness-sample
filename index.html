@@ -181,16 +181,22 @@
   .trainer-role{font-family:var(--font-en); font-size:14px; letter-spacing:0.16em; color:var(--coral-deep); margin-bottom:16px;}
   .trainer-name{font-size:24px; font-weight:900; margin-bottom:24px;}
   .trainer-bio{color:var(--ink-soft); font-size:15px; line-height:1.9; margin-bottom:32px;}
-  .trainer-stats{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:24px 0; margin-bottom:26px;}
-  .trainer-stats .stat-num{font-size:26px;}
-  .trainer-stats .stat-label{margin-top:8px; font-size:12px;}
+  .trainer-stats{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:24px 0; margin-bottom:26px;}
+  .trainer-stats .stat-num{font-size:23px;}
+  .trainer-stats .stat-label{margin-top:8px; font-size:11.5px;}
   .trainer-skills{display:flex; flex-wrap:wrap; gap:10px; margin-bottom:24px;}
   .skill-tag{font-size:12.5px; letter-spacing:0.02em; background:var(--coral-soft); color:var(--coral-deep); padding:7px 15px; border-radius:20px; font-weight:700;}
+  .trainer-motto{
+    font-size:15px; line-height:1.85; color:var(--ink);
+    border-left:3px solid var(--coral); padding-left:18px; margin-bottom:22px;
+  }
+  .trainer-motto .motto-label{display:block; font-family:var(--font-en); font-size:11.5px; letter-spacing:0.16em; color:var(--coral-deep); margin-bottom:8px;}
   .trainer-note{font-size:13.5px; color:var(--ink-soft);}
   @media (max-width:860px){
     .trainer-wrap{grid-template-columns:1fr;}
     .trainer-photo{min-height:340px;}
     .trainer-content{padding:44px 30px;}
+    .trainer-stats{grid-template-columns:repeat(2,1fr); gap:16px 12px;}
   }
 
   /* voice */
@@ -390,11 +396,15 @@
         <div class="trainer-content">
           <div class="trainer-role">HEAD TRAINER</div>
           <div class="trainer-name">上原 健太</div>
-          <p class="trainer-bio">フィジカルトレーニング歴18年。がむしゃらに追い込むことだけがすべてではないと知っている。大切なのは、クライアント自身の今日のコンディション。呼吸や表情の変化まで見極めながら、初めての筋トレも安心に変える——それが、指導における一貫したスタイル。</p>
+          <p class="trainer-bio">筋トレを始めたのは、8歳のとき。人口600人に満たない沖縄・渡嘉敷島で育ち、テレビゲームもない環境で、遊び場所は海か山しかなかった——筋トレも、当時の自分にとっては遊びの延長線上にあるものだった。33年経った今も、その感覚は変わらない。がむしゃらに追い込むことだけがすべてではないと知っているのは、"きつさ"より先に"楽しさ"を知っているから。大切なのは、クライアント自身の今日のコンディション。呼吸や表情の変化まで見極めながら、初めての筋トレも安心に変える。</p>
           <div class="trainer-stats">
             <div>
-              <div class="stat-num"><span class="cnt" data-to="18">0</span><span class="unit">年</span></div>
+              <div class="stat-num"><span class="cnt" data-to="33">0</span><span class="unit">年</span></div>
               <div class="stat-label">トレーニング歴</div>
+            </div>
+            <div>
+              <div class="stat-num"><span class="cnt" data-to="9">0</span><span class="unit">.7%</span></div>
+              <div class="stat-label">体脂肪率</div>
             </div>
             <div>
               <div class="stat-num"><span class="cnt" data-to="62">0</span><span class="unit">kg</span></div>
@@ -409,6 +419,10 @@
             <span class="skill-tag">チンニング</span>
             <span class="skill-tag">腕立て伏せ</span>
             <span class="skill-tag">アームカール</span>
+          </div>
+          <div class="trainer-motto">
+            <span class="motto-label">MOTTO</span>
+            人は、願う強さの分だけ、変わることができる。
           </div>
           <p class="trainer-note">クライアントのコンディションを最優先に、丁寧に指導するスタイルが信条。</p>
         </div>
